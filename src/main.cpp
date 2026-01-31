@@ -1,4 +1,6 @@
 #include "raylib.h"
+#include "rlgl.h"
+#include "raymath.h"
 #include "Common.h"
 
 #include <string>
@@ -12,12 +14,10 @@ int main()
 
 	Vector2 gridPosition = { GetScreenWidth() / 2.f - GRID_CELL_SIZE * MAX_GRID_CELLS_X / 2.f, GetScreenHeight() / 2.f - GRID_CELL_SIZE * MAX_GRID_CELLS_Y / 2.f };
 
-
 	while (!WindowShouldClose())
 	{
 		// UPDATE
 		// ---------------------------
-		
 		// ---------------------------
 
 		// DRAW
@@ -37,6 +37,9 @@ int main()
 		// rectangles
 		for (int i = 0; i < MAX_GRID_CELLS_X; ++i)
 			DrawRectangle(gridPosition.x + i * GRID_CELL_SIZE + GRID_CELL_BORDER, gridPosition.y + GRID_CELL_BORDER, GRID_CELL_SIZE - 2 * GRID_CELL_BORDER, GRID_CELL_SIZE - 2 * GRID_CELL_BORDER, PINK);
+
+		DrawCircleV(GetMousePosition(), 2, DARKGRAY);
+		DrawTextEx(GetFontDefault(), TextFormat("[%i, %i]", GetMouseX(), GetMouseY()), Vector2Add(GetMousePosition(), (Vector2) { -40, 30 }), 20, 2, BLACK);
 
 		EndDrawing();
 		// --------------------------
